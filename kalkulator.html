@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <!-- <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <title>Belajar Fungsi Kubik</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="index.html" class="brand">KL2</a>
+        <button class="menu-toggle" aria-label="Toggle Menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+        <div class="menu">
+          <a href="materi.html">Materi</a>
+          <a href="kalkulator.html">Kalkulator</a>
+          <a href="geogebra.html">Geogebra</a>
+          <a href="tentang.html">Tentang Kami</a>
+        </div>
+      </div>
+    </nav>
+  
+
+    <!-- Grafik Fungsi Kubik -->
+    <section id="grafik">
+      <h2>Grafik Fungsi Kubik</h2>
+      <canvas id="graph" width="400" height="400"></canvas>
+    </section>
+
+    <!-- Perhitungan Titik Maksimum dan Minimum -->
+    <section id="perhitungan">
+      <h2>Perhitungan Titik Ekstrem</h2>
+      <form id="form">
+        <h3>ax<sup>3</sup> + bx<sup>2</sup> + cx + d</h3>
+        <label for="a">a:</label>
+        <input type="number" id="a" value="1" required />
+        <br />
+        <label for="b">b:</label>
+        <input type="number" id="b" value="-3" required />
+        <br />
+        <label for="c">c:</label>
+        <input type="number" id="c" value="2" required />
+        <br />
+        <label for="d">d:</label>
+        <input type="number" id="d" value="0" required />
+        <br />
+        <button type="button" onclick="findExtremes()">Hitung Ekstrem</button>
+      </form>
+      <p id="result"></p>
+    </section>
+
+    
+    <script src="script.js"></script>
+
+     
+  </body>
+  <footer>
+    <p>© 2024 Fungsi Kubik | Dibuat oleh If kelas A Kelompok 2 (Kenanga,Annisa,Sahrul,Zaskia)   </p>
+  </footer>
+</html>

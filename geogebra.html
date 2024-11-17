@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <!-- <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <title>Belajar Fungsi Kubik</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="index.html" class="brand">KL2</a>
+        <button class="menu-toggle" aria-label="Toggle Menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+        <div class="menu">
+          <a href="materi.html">Materi</a>
+          <a href="kalkulator.html">Kalkulator</a>
+          <a href="geogebra.html">Geogebra</a>
+          <a href="tentang.html">Tentang Kami</a>
+        </div>
+      </div>
+    </nav>
+    
+
+      <!-- GeoGebra Applet Container -->
+       <section>
+      <div id="ggb-element"></div>
+
+      <!-- GeoGebra Script -->
+      <script src="https://www.geogebra.org/apps/deployggb.js"></script>
+      <script>
+        // Initialize the GeoGebra applet
+        var params = {
+          appName: "graphing",
+          width: 800,
+          height: 600,
+          showToolBar: true,
+          showAlgebraInput: true,
+          showMenuBar: true,
+        };
+        var ggbApplet = new GGBApplet(params, true);
+
+        // Inject the GeoGebra applet into the div with ID 'ggb-element' on page load
+        window.addEventListener("load", function () {
+          ggbApplet.inject("ggb-element");
+        });
+
+        // Function to update the graph with a custom function
+        function updateGraph() {
+          var input = document.getElementById("functionInput").value; // Get the input value
+          if (input) {
+            // Check if input is not empty
+            ggbApplet.evalCommand(input); // Set the function in GeoGebra
+          }
+        }
+      </script>
+    </section>
+    <script src="script.js"></script>
+
+    <div class="grid grid-cols-1 gap-10">
+     
+  </body>
+  <footer>
+    <p>© 2024 Fungsi Kubik | Dibuat oleh If kelas A Kelompok 2 (Kenanga,Annisa,Sahrul,Zaskia) </p>
+  </footer>
+</html>
