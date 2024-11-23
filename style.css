@@ -14,7 +14,6 @@ body {
   color: #fff;
 }
 
-/* Navbar */
 .navbar {
   background-color: #03063f;
   position: sticky;
@@ -183,3 +182,87 @@ footer {
     font-size: 0.8rem;
   }
 }
+
+input[type="number"] {
+  margin: 5px;
+  padding: 8px;
+  width: 80px;
+}
+button {
+  margin: 10px;
+  padding: 8px 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #45a049;
+}
+canvas {
+  margin-top: 20px;
+}
+
+/* Table container */
+.table-container {
+  margin: 2.5rem auto; /* mx-auto mt-10 */
+}
+
+/* Row container */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* gap-x-3 */
+}
+
+.row-padding {
+  padding-top: 1.25rem; /* pt-5 */
+}
+
+/* Flex container for inner layout */
+.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem; /* gap-x-1 */
+}
+
+/* Center alignment for column items */
+.text-center-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Style for the equation */
+.equation {
+  position: relative;
+}
+
+/* Radical styling */
+.radical {
+  position: relative;
+  margin-left: 1rem; /* ml-4 */
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+}
+
+.radical::before {
+  content: '';
+  position: absolute;
+  bottom: -1px; /* -bottom-px */
+  left: -0.375rem; /* -left-1.5 */
+  height: 0.75rem; /* h-3 */
+  width: 1px; /* w-px */
+  background-color: black; /* bg-black */
+  transform: rotate(-45deg);
+}
+
+/* Divider for "2a" */
+.divider {
+  width: 100%;
+  border-top: 1px solid black;
+}
+
