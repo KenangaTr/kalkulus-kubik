@@ -122,6 +122,10 @@ body {
   margin-top: 1rem;
 }
 
+h2{
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .header h1 {
     font-size: 2rem;
@@ -191,13 +195,13 @@ input[type="number"] {
 button {
   margin: 10px;
   padding: 8px 12px;
-  background-color: #4CAF50;
+  background-color: #296bc9;
   color: white;
   border: none;
   cursor: pointer;
 }
 button:hover {
-  background-color: #45a049;
+  background-color: #3693de;
 }
 canvas {
   margin-top: 20px;
