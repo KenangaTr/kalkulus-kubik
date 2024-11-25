@@ -10,7 +10,14 @@
     <!-- Navbar -->
     <nav class="navbar">
       <div class="navbar-container">
-        <a href="index.html" class="brand" ><img src="L2.png" alt="" style="align-content: center; width: 40px; margin-right: 10px;" align="middle">KL2</a>
+        <a href="index.html" class="brand"
+          ><img
+            src="L2.png"
+            alt=""
+            style="align-content: center; width: 40px; margin-right: 10px"
+            align="middle"
+          />KL2</a
+        >
         <button class="menu-toggle" aria-label="Toggle Menu">
           <span class="bar"></span>
           <span class="bar"></span>
@@ -24,42 +31,141 @@
         </div>
       </div>
     </nav>
-  
+<!-- Grafik Fungsi Kubik -->
+<section id="grafik">
+  <h2>Grafik Fungsi Kubik</h2>
+  <canvas id="graph" width="400" height="400"></canvas>
+</section>
 
-    <!-- Grafik Fungsi Kubik -->
-    <section id="grafik">
-      <h2>Grafik Fungsi Kubik</h2>
-      <canvas id="graph" width="400" height="400"></canvas>
-    </section>
+<!-- Perhitungan Titik Maksimum dan Minimum -->
+<section id="perhitungan">
+  <h2>Perhitungan Titik Ekstrem</h2>
+  <form id="form">
+    <h3>ax<sup>3</sup> + bx<sup>2</sup> + cx + d</h3>
+    <label for="a">a:</label>
+    <input type="number" id="a" value="1" required />
+    <br />
+    <label for="b">b:</label>
+    <input type="number" id="b" value="-3" required />
+    <br />
+    <label for="c">c:</label>
+    <input type="number" id="c" value="2" required />
+    <br />
+    <label for="d">d:</label>
+    <input type="number" id="d" value="0" required />
+    <br />
+    <button type="button" onclick="findExtremes()">Hitung Ekstrem</button>
+  </form>
+  <p id="result"></p>
+</section>
 
-    <!-- Perhitungan Titik Maksimum dan Minimum -->
-    <section id="perhitungan">
-      <h2>Perhitungan Titik Ekstrem</h2>
-      <form id="form">
-        <h3>ax<sup>3</sup> + bx<sup>2</sup> + cx + d</h3>
-        <label for="a">a:</label>
-        <input type="number" id="a" value="1" required />
-        <br />
-        <label for="b">b:</label>
-        <input type="number" id="b" value="-3" required />
-        <br />
-        <label for="c">c:</label>
-        <input type="number" id="c" value="2" required />
-        <br />
-        <label for="d">d:</label>
-        <input type="number" id="d" value="0" required />
-        <br />
-        <button type="button" onclick="findExtremes()">Hitung Ekstrem</button>
-      </form>
-      <p id="result"></p>
-    </section>
+<script>
+  const canvas = document.getElementById("graph");
+  const ctx = canvas.getContext("2d");
 
-    
-    <script src="script.js"></script>
+  // Fungsi menggambar sumbu dan garis bantu
+  function drawAxes() {
+    const width = canvas.width;
+    const height = canvas.height;
+    const step = 40; // Jarak antar garis bantu
 
-     
+    ctx.clearRect(0, 0, width, height);
+
+    // Garis bantu horizontal dan vertikal
+    ctx.strokeStyle = "#ddd";
+    for (let x = step; x < width; x += step) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, height);
+      ctx.stroke();
+    }
+    for (let y = step; y < height; y += step) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(width, y);
+      ctx.stroke();
+    }
+
+    // Sumbu X dan Y
+    ctx.strokeStyle = "#000";
+    ctx.beginPath();
+    ctx.moveTo(0, height / 2);
+    ctx.lineTo(width, height / 2);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(width / 2, 0);
+    ctx.lineTo(width / 2, height);
+    ctx.stroke();
+
+    // Label angka pada sumbu
+    ctx.font = "12px Arial";
+    ctx.fillStyle = "#000";
+    for (let x = step; x < width; x += step) {
+      const label = (x - width / 2) / step;
+      ctx.fillText(label, x, height / 2 + 15); // Label pada sumbu X
+    }
+    for (let y = step; y < height; y += step) {
+      const label = (height / 2 - y) / step;
+      ctx.fillText(label, width / 2 + 5, y); // Label pada sumbu Y
+    }
+  }
+
+  // Fungsi menggambar grafik fungsi kubik
+  function drawCubic(a, b, c, d) {
+    const width = canvas.width;
+    const height = canvas.height;
+    const scale = 40; // Skala grafik
+
+    ctx.strokeStyle = "#f00";
+    ctx.beginPath();
+    for (let x = -width / 2; x < width / 2; x++) {
+      const scaledX = x / scale;
+      const y = a * scaledX ** 3 + b * scaledX ** 2 + c * scaledX + d;
+      const canvasX = width / 2 + x;
+      const canvasY = height / 2 - y * scale;
+      if (x === -width / 2) ctx.moveTo(canvasX, canvasY);
+      else ctx.lineTo(canvasX, canvasY);
+    }
+    ctx.stroke();
+  }
+
+  // Fungsi menghitung titik ekstrem
+  function findExtremes() {
+    const a = parseFloat(document.getElementById("a").value);
+    const b = parseFloat(document.getElementById("b").value);
+    const c = parseFloat(document.getElementById("c").value);
+    const d = parseFloat(document.getElementById("d").value);
+
+    // Persamaan turunan pertama: 3ax^2 + 2bx + c = 0
+    const discriminant = 4 * b ** 2 - 12 * a * c;
+
+    let resultText = "Tidak ada titik ekstrem.";
+    if (discriminant >= 0) {
+      const x1 = (-2 * b + Math.sqrt(discriminant)) / (6 * a);
+      const x2 = (-2 * b - Math.sqrt(discriminant)) / (6 * a);
+      const y1 = a * x1 ** 3 + b * x1 ** 2 + c * x1 + d;
+      const y2 = a * x2 ** 3 + b * x2 ** 2 + c * x2 + d;
+      resultText = `Titik ekstrem:\n1. (${x1.toFixed(2)}, ${y1.toFixed(2)})\n2. (${x2.toFixed(2)}, ${y2.toFixed(2)})`;
+    }
+
+    document.getElementById("result").innerText = resultText;
+
+    // Gambar ulang grafik
+    drawAxes();
+    drawCubic(a, b, c, d);
+  }
+
+  // Inisialisasi grafik
+  drawAxes();
+  drawCubic(1, -3, 2, 0);
+</script>
+    <!-- <script src="script.js"></script> -->
   </body>
   <footer>
-    <p>© 2024 Fungsi Kubik | Dibuat oleh If kelas A Kelompok 2 (Kenanga,Annisa,Sahrul,Zaskia)   </p>
+    <p>
+      © 2024 Fungsi Kubik | Dibuat oleh If kelas A Kelompok 2
+      (Kenanga,Annisa,Sahrul,Zaskia)
+    </p>
   </footer>
 </html>

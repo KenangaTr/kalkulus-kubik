@@ -91,4 +91,43 @@ document.querySelectorAll("#a, #b, #c, #d").forEach(input => {
 // Gambar grafik awal saat halaman pertama kali dimuat
 drawGraph();
 
+let zoomLevel = 1; // Skala awal
+const zoomFactor = 1.2; // Faktor zoom
+
+// Fungsi untuk menggambar ulang grafik dengan zoom
+function redrawGraphWithZoom() {
+  const a = parseFloat(document.getElementById("a").value);
+  const b = parseFloat(document.getElementById("b").value);
+  const c = parseFloat(document.getElementById("c").value);
+  const d = parseFloat(document.getElementById("d").value);
+
+  // Reset transformasi kanvas
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Terapkan zoom
+  ctx.scale(zoomLevel, zoomLevel);
+
+  // Gambar ulang sumbu dan grafik
+  drawAxes();
+  drawCubic(a, b, c, d);
+}
+
+// Fungsi untuk zoom in dan zoom out
+function zoom(direction) {
+  if (direction === "in") {
+    zoomLevel *= zoomFactor;
+  } else if (direction === "out") {
+    zoomLevel /= zoomFactor;
+  }
+  redrawGraphWithZoom();
+}
+
+// Fungsi untuk reset zoom
+function resetZoom() {
+  zoomLevel = 1;
+  redrawGraphWithZoom();
+}
+
+
 
